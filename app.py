@@ -246,52 +246,58 @@ def main():
                 option = filter_name
 
     # Display filter previews
-    if image_file is not None:
-        st.subheader("Filter Previews")
-        image = Image.open(image_file)
-        image_np = np.array(image)
+# Display filter previews vertically
+if image_file is not None:
+    st.subheader("Filter Previews")
+    image = Image.open(image_file)
+    image_np = np.array(image)
 
-        preview_cols = st.columns(len(filters))
-        filter_functions = [
-            convertto_watercolorsketch, pencilsketch, cartoon_effect, 
-            sepia_effect, hdr_effect, sharpen_effect
-        ]
+    filter_functions = [
+        ("Watercolor Sketch", convertto_watercolorsketch),
+        ("Pencil Sketch", pencilsketch),
+        ("Cartoon Effect", cartoon_effect),
+        ("Sepia Effect", sepia_effect),
+        ("HDR Effect", hdr_effect),
+        ("Sharpen Effect", sharpen_effect)
+    ]
 
-        for col, (filter_name, filter_func) in zip(preview_cols, zip(filters.keys(), filter_functions)):
-            filtered_img = filter_func(image_np)
-            col.image(Image.fromarray(filtered_img), use_container_width=True, caption=filter_name)
+    for filter_name, filter_func in filter_functions:
+        st.markdown(f"### {filter_name}")
+        filtered_img = filter_func(image_np)
+        st.image(Image.fromarray(filtered_img), use_container_width=True, caption=filter_name)
 
-        # Process and display the selected filter
-        if option:
-            st.subheader(f"{option} Result")
-            filter_map = {
-                'Watercolor Sketch': convertto_watercolorsketch,
-                'Pencil Sketch': pencilsketch,
-                'Cartoon Effect': cartoon_effect,
-                'Sepia Effect': sepia_effect,
-                'HDR Effect': hdr_effect,
-                'Sharpen Effect': sharpen_effect
-            }
-            final_image = filter_map[option](image_np)
-            col1, col2 = st.columns(2)
-            with col1:
-                st.header("Original Image")
-                st.image(image, use_container_width=True)
-            with col2:
-                st.header("Processed Image")
-                st.image(final_image, use_container_width=True)
+    # Process and display the selected filter
+    if option:
+        st.subheader(f"{option} Result")
+        filter_map = {
+            'Watercolor Sketch': convertto_watercolorsketch,
+            'Pencil Sketch': pencilsketch,
+            'Cartoon Effect': cartoon_effect,
+            'Sepia Effect': sepia_effect,
+            'HDR Effect': hdr_effect,
+            'Sharpen Effect': sharpen_effect
+        }
+        final_image = filter_map[option](image_np)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.header("Original Image")
+            st.image(image, use_container_width=True)
+        with col2:
+            st.header("Processed Image")
+            st.image(final_image, use_container_width=True)
 
-            # Download button
-            buf = BytesIO()
-            Image.fromarray(final_image).save(buf, format="JPEG")
-            byte_im = buf.getvalue()
-            st.download_button(
-                label="Download Processed Image",
-                data=byte_im,
-                file_name=f"{option.lower().replace(' ', '_')}.jpg",
-                mime="image/jpeg"
-            )
+        # Download button
+        buf = BytesIO()
+        Image.fromarray(final_image).save(buf, format="JPEG")
+        byte_im = buf.getvalue()
+        st.download_button(
+            label="Download Processed Image",
+            data=byte_im,
+            file_name=f"{option.lower().replace(' ', '_')}.jpg",
+            mime="image/jpeg"
+        )
 
+        
     # Add feedback section
     st.sidebar.subheader("Feedback")
     feedback = st.sidebar.text_area("Share your feedback about the app!")
