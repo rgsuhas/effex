@@ -107,10 +107,10 @@ pip install -r requirements.txt
 ### Example Output
 
 #### Original Image:
-![Original](sample_img\download.jpg)
+![Original](sample_img/download.jpg)
 
 #### Processed Image (Watercolor Sketch):
-![Watercolor](processed\portrait_man_watersketch.jpg)
+![Watercolor](processed/portrait_man_watersketch.jpg)
 
 ---
 
