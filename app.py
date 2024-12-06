@@ -144,6 +144,8 @@ st.markdown("""
 
 # the main function which has the code for 
 # the web application 
+# the main function which has the code for 
+# the web application 
 def main():
     st.title('Image Filter Application')
     st.write("Apply artistic filters like watercolor, pencil sketch, cartoon, sepia, HDR, and sharpen effects to your images.")
@@ -152,77 +154,9 @@ def main():
     dark_mode = st.sidebar.checkbox("Dark Mode", value=True)
 
     if dark_mode:
-        st.markdown("""
-            <style>
-            .stApp {
-                background-color: #1d1d2a; /* Steel Gray */
-                padding: 20px;
-                border-radius: 10px;
-            }
-            h1, h2, h3, h4, h5, h6 {
-                color: #e1c6c6; /* Dust Storm */
-            }
-            p, label {
-                color: #606071; /* Mid Gray */
-            }
-            div.stButton > button {
-                background-color: #40404f; /* Gun Powder */
-                color: #e1c6c6; /* Dust Storm */
-                border: 1px solid #9f7f7f; /* Pharlap */
-                padding: 10px 20px;
-                border-radius: 8px;
-                font-size: 16px;
-            }
-            div.stButton > button:hover {
-                background-color: #9f7f7f; /* Pharlap */
-                color: #1d1d2a; /* Steel Gray */
-            }
-            img {
-                border: 5px solid #40404f; /* Gun Powder */
-                border-radius: 10px;
-            }
-            section[data-testid="stSidebar"] {
-                background-color: #40404f; /* Gun Powder */
-                color: #e1c6c6; /* Dust Storm */
-            }
-            </style>
-        """, unsafe_allow_html=True)
+        st.markdown("""<style>.stApp { background-color: #1d1d2a; }</style>""", unsafe_allow_html=True)
     else:
-        st.markdown("""
-            <style>
-            .stApp {
-                background-color: #ffffff; /* White */
-                padding: 20px;
-                border-radius: 10px;
-            }
-            h1, h2, h3, h4, h5, h6 {
-                color: #000000; /* Black */
-            }
-            p, label {
-                color: #333333; /* Dark Gray */
-            }
-            div.stButton > button {
-                background-color: #f0f0f0; /* Light Gray */
-                color: #000000; /* Black */
-                border: 1px solid #cccccc; /* Light Gray */
-                padding: 10px 20px;
-                border-radius: 8px;
-                font-size: 16px;
-            }
-            div.stButton > button:hover {
-                background-color: #cccccc; /* Light Gray */
-                color: #000000; /* Black */
-            }
-            img {
-                border: 5px solid #f0f0f0; /* Light Gray */
-                border-radius: 10px;
-            }
-            section[data-testid="stSidebar"] {
-                background-color: #f0f0f0; /* Light Gray */
-                color: #000000; /* Black */
-            }
-            </style>
-        """, unsafe_allow_html=True)
+        st.markdown("""<style>.stApp { background-color: #ffffff; }</style>""", unsafe_allow_html=True)
 
     # Layout: File uploader and filter options
     upload_col, filter_col = st.columns([1, 2])
@@ -245,64 +179,62 @@ def main():
             if st.button(f"{emoji} {filter_name}"):
                 option = filter_name
 
-    # Display filter previews
-# Display filter previews vertically
-if image_file is not None:
-    st.subheader("Filter Previews")
-    image = Image.open(image_file)
-    image_np = np.array(image)
+    if image_file is not None:
+        st.subheader("Filter Previews")
+        image = Image.open(image_file)
+        image_np = np.array(image)
 
-    filter_functions = [
-        ("Watercolor Sketch", convertto_watercolorsketch),
-        ("Pencil Sketch", pencilsketch),
-        ("Cartoon Effect", cartoon_effect),
-        ("Sepia Effect", sepia_effect),
-        ("HDR Effect", hdr_effect),
-        ("Sharpen Effect", sharpen_effect)
-    ]
+        filter_functions = [
+            ("Watercolor Sketch", convertto_watercolorsketch),
+            ("Pencil Sketch", pencilsketch),
+            ("Cartoon Effect", cartoon_effect),
+            ("Sepia Effect", sepia_effect),
+            ("HDR Effect", hdr_effect),
+            ("Sharpen Effect", sharpen_effect)
+        ]
 
-    for filter_name, filter_func in filter_functions:
-        st.markdown(f"### {filter_name}")
-        filtered_img = filter_func(image_np)
-        st.image(Image.fromarray(filtered_img), use_container_width=True, caption=filter_name)
+        # Display filters vertically
+        for filter_name, filter_func in filter_functions:
+            st.markdown(f"### {filter_name}")
+            filtered_img = filter_func(image_np)
+            st.image(Image.fromarray(filtered_img), use_container_width=True, caption=filter_name)
 
-    # Process and display the selected filter
-    if option:
-        st.subheader(f"{option} Result")
-        filter_map = {
-            'Watercolor Sketch': convertto_watercolorsketch,
-            'Pencil Sketch': pencilsketch,
-            'Cartoon Effect': cartoon_effect,
-            'Sepia Effect': sepia_effect,
-            'HDR Effect': hdr_effect,
-            'Sharpen Effect': sharpen_effect
-        }
-        final_image = filter_map[option](image_np)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.header("Original Image")
-            st.image(image, use_container_width=True)
-        with col2:
-            st.header("Processed Image")
-            st.image(final_image, use_container_width=True)
+        # Process and display the selected filter
+        if option:
+            st.subheader(f"{option} Result")
+            filter_map = {
+                'Watercolor Sketch': convertto_watercolorsketch,
+                'Pencil Sketch': pencilsketch,
+                'Cartoon Effect': cartoon_effect,
+                'Sepia Effect': sepia_effect,
+                'HDR Effect': hdr_effect,
+                'Sharpen Effect': sharpen_effect
+            }
+            final_image = filter_map[option](image_np)
+            col1, col2 = st.columns(2)
+            with col1:
+                st.header("Original Image")
+                st.image(image, use_container_width=True)
+            with col2:
+                st.header("Processed Image")
+                st.image(final_image, use_container_width=True)
 
-        # Download button
-        buf = BytesIO()
-        Image.fromarray(final_image).save(buf, format="JPEG")
-        byte_im = buf.getvalue()
-        st.download_button(
-            label="Download Processed Image",
-            data=byte_im,
-            file_name=f"{option.lower().replace(' ', '_')}.jpg",
-            mime="image/jpeg"
-        )
-
+            # Download button
+            buf = BytesIO()
+            Image.fromarray(final_image).save(buf, format="JPEG")
+            byte_im = buf.getvalue()
+            st.download_button(
+                label="Download Processed Image",
+                data=byte_im,
+                file_name=f"{option.lower().replace(' ', '_')}.jpg",
+                mime="image/jpeg"
+            )
         
-    # Add feedback section
-    st.sidebar.subheader("Feedback")
-    feedback = st.sidebar.text_area("Share your feedback about the app!")
-    if st.sidebar.button("Submit Feedback"):
-        st.sidebar.success("Thank you for your feedback!")
+        # Add feedback section
+        st.sidebar.subheader("Feedback")
+        feedback = st.sidebar.text_area("Share your feedback about the app!")
+        if st.sidebar.button("Submit Feedback"):
+            st.sidebar.success("Thank you for your feedback!")
 
 if __name__ == '__main__': 
     main()
