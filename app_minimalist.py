@@ -94,7 +94,7 @@ def main():
         img_np = np.array(img)
 
         st.subheader("Preview")
-        st.image(img, use_column_width=True, caption="Original Image")
+        st.image(img, use_container_width=True, caption="Original Image")
 
         # Filters
         filters = {
@@ -111,7 +111,7 @@ def main():
         if st.button("Apply Filter"):
             with st.spinner("Applying filter..."):
                 filtered_img = filters[selected_filter](img_np)
-                st.image(filtered_img, use_column_width=True, caption=f"{selected_filter} Effect")
+                st.image(filtered_img, use_container_width=True, caption=f"{selected_filter} Effect")
 
                 # Download filtered image
                 buf = BytesIO()
