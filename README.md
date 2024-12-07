@@ -24,8 +24,8 @@ This is a **Streamlit-based web application** that allows users to apply artisti
 
 1. Clone this repository:
    ```bash
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone https://github.com/rgsuhas/Image-Filter-Application
+   cd Image-Filter-Application
    ```
 
 2. Install the required dependencies:
