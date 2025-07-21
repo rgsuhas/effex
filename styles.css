@@ -1,0 +1,65 @@
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #333;
+    background-color: #f0f2f6;
+}
+
+.stApp {
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1e1e2d;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #444;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    color: #e1e1e1;
+    background-color: #121212;
+}
+
+body.dark-mode .stApp {
+    background-color: #121212;
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6, body.dark-mode p, body.dark-mode label {
+    color: #e1e1e1;
+}
+
+/* Radio Buttons */
+.stRadio > div {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.stRadio > div > label {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #e0e0e0;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stRadio > div > label:hover {
+    background-color: #d0d0d0;
+}
+
+.stRadio > div > label.st-cb-checked {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Images */
+img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
