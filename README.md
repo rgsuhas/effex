@@ -1,4 +1,44 @@
-# Image Filter Application
+# Effex - Image Filter Application 🎨
+
+### Live Demo
+**🌐 [Try it live: https://rg-effex.streamlit.app/](https://rg-effex.streamlit.app/)**
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <strong>Original Image</strong><br/>
+        <img src="sample_img/download.jpg" width="300" alt="Original Image"/>
+      </td>
+      <td align="center">
+        <strong>Watercolor Effect</strong><br/>
+        <img src="processed/portrait_man_watersketch.jpg" width="300" alt="Watercolor Effect"/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <strong>Pencil Sketch</strong><br/>
+        <img src="processed/man_portarit_pencilsketch.jpg" width="300" alt="Pencil Sketch"/>
+      </td>
+      <td align="center">
+        <strong>Cartoon Effect</strong><br/>
+        <img src="processed/man_portarit_cartooneff.jpg" width="300" alt="Cartoon Effect"/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <strong>Sepia Effect</strong><br/>
+        <img src="processed/portrait_man_sepia.jpg" width="300" alt="Sepia Effect"/>
+      </td>
+      <td align="center">
+        <strong>HDR Effect</strong><br/>
+        <img src="processed/hdr_man.jpg" width="300" alt="HDR Effect"/>
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
 
 ### Description
 This is a **Streamlit-based web application** that allows users to apply artistic filters to their images. Users can upload an image and apply effects like watercolor sketch, pencil sketch, cartoon, sepia, HDR, and sharpen effects. The application supports dark and light modes for better user experience.
@@ -82,10 +122,15 @@ This is a **Streamlit-based web application** that allows users to apply artisti
 ### File Structure
 
 ```plaintext
-📁 Image-Filter-App
-├── app.py                 # Main Streamlit application
-├── requirements.txt       # Python dependencies
-└── README.md              # Documentation
+📁 Effex
+├── main_app.py              # Main Streamlit application
+├── requirements.txt          # Python dependencies
+├── styles.css               # Custom CSS styling
+├── .streamlit/config.toml   # Streamlit configuration
+├── Procfile                 # Heroku deployment config
+├── sample_img/              # Sample images for testing
+├── processed/               # Processed image examples
+└── README.md               # Documentation
 ```
 
 ---
@@ -104,13 +149,15 @@ pip install -r requirements.txt
 
 ---
 
-### Example Output
+### Deployment
 
-#### Original Image:
-![Original](sample_img/download.jpg)
+This application is deployed on **Streamlit Cloud** and can be accessed at:
+**🌐 [https://rg-effex.streamlit.app/](https://rg-effex.streamlit.app/)**
 
-#### Processed Image (Watercolor Sketch):
-![Watercolor](processed/portrait_man_watersketch.jpg)
+For local deployment:
+```bash
+streamlit run main_app.py --server.headless true
+```
 
 ---
 
