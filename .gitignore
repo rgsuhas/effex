@@ -1,0 +1,21 @@
+# Byte-code files
+*.pyc
+*.pyo
+__pycache__/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+
+# Editors
+*.swp
+*~
+
+# Misc
+.DS_Store
+.env
+
+# Gemini specific
+GEMINI.md

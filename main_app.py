@@ -9,8 +9,18 @@ st.set_page_config(page_title="Effex - Image Filters", layout="wide", initial_si
 
 # Load CSS
 def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    try:
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        # Fallback CSS if file not found
+        st.markdown("""
+        <style>
+        body { font-family: 'Helvetica Neue', sans-serif; }
+        .stApp { padding: 2rem; }
+        h1 { font-size: 3rem; font-weight: bold; color: #1e1e2d; }
+        </style>
+        """, unsafe_allow_html=True)
 
 # --- Image Processing Functions ---
 
