@@ -80,44 +80,7 @@ This is a **Streamlit-based web application** that allows users to apply artisti
 
 ---
 
-### Usage
 
-1. **Upload an Image**:
-   - Use the "Upload Your Image" section to select an image (`PNG`, `JPG`, or `JPEG` format).
-
-2. **Choose a Filter**:
-   - Select one of the filters from the available options.
-
-3. **View Previews**:
-   - View real-time previews of all filters in the "Filter Previews" section.
-
-4. **Process and Download**:
-   - The selected filter is applied, and the result is displayed alongside the original image.
-   - Use the "Download Processed Image" button to save the edited image.
-
----
-
-### Filters Description
-
-1. **Watercolor Sketch** 🖌️:
-   - Creates a vibrant watercolor effect with enhanced edges.
-
-2. **Pencil Sketch** ✏️:
-   - Converts the image into a grayscale pencil sketch.
-
-3. **Cartoon Effect** 🎨:
-   - Applies a cartoon-like effect with bold colors and edges.
-
-4. **Sepia Effect** 📜:
-   - Gives the image a vintage, warm sepia tone.
-
-5. **HDR Effect** 🌄:
-   - Enhances image contrast and texture for a high dynamic range effect.
-
-6. **Sharpen Effect** 🔍:
-   - Sharpens image details by enhancing edges.
-
----
 
 ### File Structure
 
@@ -164,5 +127,3 @@ streamlit run main_app.py --server.headless true
 ### Feedback
 
 If you have suggestions or encounter issues, feel free to submit feedback through the application or open an issue on the repository.
-
-Enjoy creating beautiful artistic images! 🎨
